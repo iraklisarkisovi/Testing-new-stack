@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { GetGames } from "./requests/GetGames";
 import type { Game } from "./types/types";
 import { CardImage } from "./components/GameComponent";
+import { SpinnerEmpty } from "./components/LoadingComponent";
 
 function App() {
   const { data, isLoading, isError } = useQuery({
@@ -25,16 +26,22 @@ function App() {
         <CardTitle>Website Name</CardTitle>
         <ToggleDemo />
       </CardHeader>
-      <Card className="w-full grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 h-full rounded-none bg-foreground">
-        {isLoading && </>}
-        {data?.map((item: Game) => (
-          <CardImage
-            image={item.background_image}
-            rating={item.rating}
-            name={item.name}
-          />
-        ))}
-      </Card>
+      {isLoading ? (
+        <Card className="w-full h-screen flex flex-col items-center justify-center max-md:grid-cols-2 max-sm:grid-cols-1 rounded-none bg-foreground">
+          <SpinnerEmpty />
+        </Card>
+      ) : (
+        <Card className="w-full grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 h-full rounded-none bg-foreground">
+          {data?.map((item: Game) => (
+            <CardImage
+              image={item.background_image}
+              rating={item.rating}
+              name={item.name}
+            />
+          ))}
+        </Card>
+      )}
+
       <CardFooter className="flex flex-col bg-secondary-foreground text-accent items-start justify-between">
         <CardTitle>Website Name</CardTitle>
         <CardDescription>
