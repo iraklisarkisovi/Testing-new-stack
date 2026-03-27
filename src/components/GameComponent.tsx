@@ -10,15 +10,15 @@ import {
 } from "../components/ui/card";
 
 export function CardImage({
-  slug,
+  id,
   name,
   rating,
   image,
 }: {
-  slug: string;
-  name: string;
-  rating: number;
-  image: string;
+  id: number | undefined;
+  name: string | undefined;
+  rating: number | undefined;
+  image: string | undefined;
 }) {
   const navigate = useNavigate();
   return (
@@ -31,7 +31,11 @@ export function CardImage({
       <CardHeader className="text-accent">
         <CardTitle>{name}</CardTitle>
         <CardAction className="p-5">
-          <Badge variant={rating >= 3.6 ? "secondary" : "destructive"}>
+          <Badge
+            variant={
+              rating != undefined && rating >= 3.6 ? "secondary" : "destructive"
+            }
+          >
             Rating: {rating}
           </Badge>
         </CardAction>
@@ -39,7 +43,7 @@ export function CardImage({
       <CardFooter className="bg-secondary-foreground">
         <Button
           className="w-full cursor-pointer"
-          onClick={() => navigate(`/game/${slug}`)}
+          onClick={() => navigate(`/game/${id}`)}
         >
           View more
         </Button>

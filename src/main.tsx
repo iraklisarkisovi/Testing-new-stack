@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import GamePage from "./pages/Game.tsx";
 
 export const client = new QueryClient();
 
@@ -13,8 +14,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/errorpage",
-    element: <></>,
+    path: "/game/:id",
+    element: <GamePage />,
   },
 ]);
 
