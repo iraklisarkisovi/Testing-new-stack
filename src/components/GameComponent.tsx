@@ -8,6 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
+import { useAtom } from "jotai";
+import { Theme } from "./Toggle";
 
 export function CardImage({
   id,
@@ -20,6 +22,8 @@ export function CardImage({
   rating: number | undefined;
   image: string | undefined;
 }) {
+  const [theme] = useAtom(Theme);
+
   const navigate = useNavigate();
   return (
     <Card className="relative mx-auto w-full max-w-sm pt-0 mb-2">
@@ -28,7 +32,9 @@ export function CardImage({
         alt="Event cover"
         className="relative z-20 aspect-video w-full object-cover"
       />
-      <CardHeader className="text-accent">
+      <CardHeader
+        className={`${theme === "dark" ? "bg-secondary-foreground text-accent" : "bg-accent"}`}
+      >
         <CardTitle>{name}</CardTitle>
         <CardAction className="p-5">
           <Badge
@@ -40,7 +46,10 @@ export function CardImage({
           </Badge>
         </CardAction>
       </CardHeader>
-      <CardFooter className="bg-secondary-foreground">
+
+      <CardFooter
+        className={theme === "dark" ? "bg-secondary-foreground" : "bg-accent"}
+      >
         <Button
           className="w-full cursor-pointer"
           onClick={() => navigate(`/game/${id}`)}

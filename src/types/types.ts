@@ -6,8 +6,9 @@ export interface Game {
   tba: boolean;
   background_image: string;
   rating: number;
+  description_raw: string;
   rating_top: number;
-
+  description: string;
   ratings: Rating[];
   ratings_count: number;
   reviews_text_count: number;

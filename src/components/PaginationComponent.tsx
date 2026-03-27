@@ -7,6 +7,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "../components/ui/pagination";
+import { useAtom } from "jotai";
+import { Theme } from "./Toggle";
 
 interface PaginationProps {
   setPage: React.Dispatch<React.SetStateAction<number>>;
@@ -17,6 +19,8 @@ export const PaginationComponent = ({
   setPage,
   currentPage,
 }: PaginationProps) => {
+  const [theme] = useAtom(Theme);
+
   const HandlePrevPage = () => {
     if (currentPage < 1) {
       setPage((prev) => prev - 1);
@@ -25,7 +29,9 @@ export const PaginationComponent = ({
     }
   };
   return (
-    <Pagination className="bg-secondary-foreground text-accent h-[60px]">
+    <Pagination
+      className={`${theme === "dark" ? "bg-secondary-foreground  text-accent" : "bg-secondary"} h-[60px]`}
+    >
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
