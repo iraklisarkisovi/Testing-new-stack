@@ -20,7 +20,7 @@ function Home() {
   const [page, setPage] = useState(1);
   const pageSize = 6;
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["Games", page],
     queryFn: () => GetGames(page, pageSize),
     staleTime: 1000 * 60 * 10,
