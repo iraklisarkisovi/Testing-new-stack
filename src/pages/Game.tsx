@@ -8,7 +8,6 @@ import { Spinner } from "../components/ui/spinner";
 
 export default function GamePage() {
   const { id } = useParams<{ id: string }>();
-  console.log(id);
   const { data, isFetching } = useQuery({
     queryKey: ["Currentgame"],
     queryFn: () => GetGame(id),
@@ -22,7 +21,6 @@ export default function GamePage() {
     );
   }
 
-  console.log(data);
   return (
     <>
       <Card className="w-full h-full flex flex-col items-center justify-center rounded-none bg-foreground">

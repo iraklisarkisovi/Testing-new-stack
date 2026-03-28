@@ -10,6 +10,7 @@ import {
 } from "../components/ui/card";
 import { useAtom } from "jotai";
 import { Theme } from "./Toggle";
+import { Language } from "./SelectComponent";
 
 export function CardImage({
   id,
@@ -23,6 +24,7 @@ export function CardImage({
   image: string | undefined;
 }) {
   const [theme] = useAtom(Theme);
+  const [language] = useAtom(Language);
 
   const navigate = useNavigate();
   return (
@@ -42,7 +44,8 @@ export function CardImage({
               rating != undefined && rating >= 3.6 ? "secondary" : "destructive"
             }
           >
-            Rating: {rating}
+            {language === "en" ? "Rating: " : "რეიტინგი: "}
+            {rating}
           </Badge>
         </CardAction>
       </CardHeader>
@@ -54,7 +57,7 @@ export function CardImage({
           className="w-full cursor-pointer"
           onClick={() => navigate(`/game/${id}`)}
         >
-          View more
+          {language === "en" ? "View more" : "მეტის ნახვა"}
         </Button>
       </CardFooter>
     </Card>

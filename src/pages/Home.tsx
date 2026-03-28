@@ -14,8 +14,10 @@ import { useEffect, useState } from "react";
 import { PaginationComponent } from "../components/PaginationComponent";
 import { SkeletonCard } from "../components/GameSkeleton";
 import { useAtom } from "jotai";
+import { SelectDemo } from "../components/SelectComponent";
 
 function Home() {
+  // const [language] = useAtom(Language);
   const [theme] = useAtom(Theme);
   const [page, setPage] = useState(1);
   const pageSize = 6;
@@ -34,10 +36,13 @@ function Home() {
   return (
     <>
       <CardHeader
-        className={`justify-around transition-colors   ${theme === "dark" ? "text-secondary bg-secondary-foreground" : "bg-secondary"}  h-[60px]`}
+        className={`justify-around transition-colors   ${theme === "dark" ? "text-secondary bg-secondary-foreground" : "bg-secondary"} h-[60px]`}
       >
         <CardTitle className="cursor-pointer">Website Name</CardTitle>
-        <ToggleDemo />
+        <div className="flex flex-row w-full gap-5 items-center max-w-[150px]">
+          <SelectDemo />
+          <ToggleDemo />
+        </div>
       </CardHeader>
       {isLoading ? (
         <Card

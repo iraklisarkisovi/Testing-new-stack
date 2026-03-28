@@ -7,6 +7,8 @@ import {
   IconChevronRight,
   IconDots,
 } from "@tabler/icons-react";
+import { Language } from "../SelectComponent";
+import { useAtom } from "jotai";
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -69,9 +71,13 @@ function PaginationLink({
 
 function PaginationPrevious({
   className,
-  text = "Previous",
+  language,
+  text = `${language === "en" ? "Previos" : "უკან"}`,
   ...props
-}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
+}: React.ComponentProps<typeof PaginationLink> & {
+  text?: string;
+  language: string;
+}) {
   return (
     <PaginationLink
       aria-label="Go to previous page"
@@ -87,9 +93,13 @@ function PaginationPrevious({
 
 function PaginationNext({
   className,
-  text = "Next",
+  language,
+  text = `${language === "en" ? "Next" : "წინ"}`,
   ...props
-}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
+}: React.ComponentProps<typeof PaginationLink> & {
+  text?: string;
+  language: string;
+}) {
   return (
     <PaginationLink
       aria-label="Go to next page"
