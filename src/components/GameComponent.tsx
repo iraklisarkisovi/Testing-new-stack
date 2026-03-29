@@ -26,8 +26,15 @@ export function CardImage({
   const { t } = useTranslation();
   const [theme] = useAtom(Theme);
   const navigate = useNavigate();
+  const Navigate = useNavigate();
   return (
-    <Card className="relative mx-auto w-full max-w-sm pt-0 mb-2">
+    <Card
+      className="relative mx-auto w-full max-w-sm pt-0 mb-2 cursor-pointer 
+           border-bv border-r border-transparent 
+           transition-all duration-300 ease-in-out 
+           hover:border-chart-4 hover:drop-shadow-2xl"
+      onClick={() => Navigate("/game/" + id)}
+    >
       <img
         src={image}
         alt="Event cover"

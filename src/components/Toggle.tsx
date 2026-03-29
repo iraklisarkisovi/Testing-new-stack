@@ -1,8 +1,9 @@
 import { Toggle } from "../components/ui/toggle";
 import { MoonIcon } from "lucide-react";
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 
-export const Theme = atom<string | "dark" | "light">("dark");
+export const Theme = atomWithStorage<"dark" | "light">("theme", "dark");
 
 export function ToggleDemo() {
   const [theme, setTheme] = useAtom(Theme);

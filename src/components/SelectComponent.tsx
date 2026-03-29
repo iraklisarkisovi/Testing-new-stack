@@ -27,7 +27,7 @@ export function SelectDemo() {
 
   return (
     <Select items={items} value={language} onValueChange={handleLanguageChange}>
-      <SelectTrigger className="w-full max-w-48">
+      <SelectTrigger className="w-full max-w-48 cursor-pointer">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>

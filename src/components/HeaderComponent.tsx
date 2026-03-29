@@ -10,7 +10,7 @@ export default function Header({ theme }: { theme: string | "ka" | "en" }) {
 
   return (
     <CardHeader
-      className={`justify-around sticky top-0 z-50 transition-colors ${
+      className={`justify-around sticky top-0 z-50 transition-colors border-b-2 border-chart-5 ${
         theme === "dark"
           ? "text-secondary bg-secondary-foreground"
           : "bg-secondary"
