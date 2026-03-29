@@ -2,10 +2,9 @@ import {
   Card,
   CardDescription,
   CardFooter,
-  CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { Theme, ToggleDemo } from "../components/Toggle";
+import { Theme } from "../components/Toggle";
 import { useQuery } from "@tanstack/react-query";
 import { GetGames } from "../requests/GetGames";
 import type { Game } from "../types/types";
@@ -14,10 +13,12 @@ import { useEffect, useState } from "react";
 import { PaginationComponent } from "../components/PaginationComponent";
 import { SkeletonCard } from "../components/GameSkeleton";
 import { useAtom } from "jotai";
-import { SelectDemo } from "../components/SelectComponent";
+import Header from "../components/HeaderComponent";
+import { useTranslation } from "react-i18next";
 
 function Home() {
-  // const [language] = useAtom(Language);
+  const { t } = useTranslation();
+
   const [theme] = useAtom(Theme);
   const [page, setPage] = useState(1);
   const pageSize = 6;
@@ -35,15 +36,7 @@ function Home() {
 
   return (
     <>
-      <CardHeader
-        className={`justify-around transition-colors   ${theme === "dark" ? "text-secondary bg-secondary-foreground" : "bg-secondary"} h-[60px]`}
-      >
-        <CardTitle className="cursor-pointer">Website Name</CardTitle>
-        <div className="flex flex-row w-full gap-5 items-center max-w-[150px]">
-          <SelectDemo />
-          <ToggleDemo />
-        </div>
-      </CardHeader>
+      <Header theme={theme} />
       {isLoading ? (
         <Card
           className={`w-full grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 h-full rounded-none ${theme === "dark" ? "bg-foreground  text-accent" : "bg-accent"}`}
@@ -74,11 +67,8 @@ function Home() {
       <CardFooter
         className={`flex flex-col transition-colors  ${theme === "dark" ? "bg-secondary-foreground text-accent" : "bg-accent"} text-accent items-start justify-between`}
       >
-        <CardTitle>Website Name</CardTitle>
-        <CardDescription>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius,
-          aperiam?
-        </CardDescription>
+        <CardTitle>{t("home.name")}</CardTitle>
+        <CardDescription>{t("home.description")}</CardDescription>
       </CardFooter>
     </>
   );

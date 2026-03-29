@@ -23,6 +23,5 @@ export const GetGame = async (GameId: string | undefined) => {
   }
   const Response = await res.json();
   const game: Game = Response;
-  console.log(game);
   return game;
 };

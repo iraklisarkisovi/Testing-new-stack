@@ -1,0 +1,14 @@
+{
+  "home": {
+    "name": "გეიმბეისი",
+    "description": "lorem ipsum emet"
+  },
+  "cards": {
+    "rating": "რეიტინგი: ",
+    "button": "მეტის ნახვა"
+  },
+  "pagination": {
+    "prev": "უკან",
+    "next": "წინ"
+  }
+}

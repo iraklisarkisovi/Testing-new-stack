@@ -1,0 +1,14 @@
+{
+  "home": {
+    "name": "GameBase",
+    "description": "lorem ipsum emet"
+  },
+  "cards": {
+    "rating": "Rating: ",
+    "button": "View more"
+  },
+  "pagination": {
+    "prev": "Previous",
+    "next": "Next"
+  }
+}
