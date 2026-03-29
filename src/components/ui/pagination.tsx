@@ -7,8 +7,6 @@ import {
   IconChevronRight,
   IconDots,
 } from "@tabler/icons-react";
-import { Language } from "../SelectComponent";
-import { useAtom } from "jotai";
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
