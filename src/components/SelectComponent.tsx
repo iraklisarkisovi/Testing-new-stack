@@ -7,10 +7,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import i18n from "i18next";
+import { useEffect } from "react";
 
-export const Language = atom<string>("en");
+export const Language = atomWithStorage<string>("language", "en");
 
 const items = [
   { label: "English", value: "en" },
@@ -20,9 +22,12 @@ const items = [
 export function SelectDemo() {
   const [language, setLanguage] = useAtom(Language);
 
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language]);
+
   function handleLanguageChange(value: string) {
     setLanguage(value);
-    i18n.changeLanguage(value);
   }
 
   return (

@@ -9,6 +9,6 @@ i18n.use(initReactI18next).init({
     en: { translation: en },
     ka: { translation: ka },
   },
-  lng: "en",
+  lng: localStorage.getItem("language") ?? "en",
   fallbackLng: "en",
 });

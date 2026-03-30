@@ -3,12 +3,17 @@ import { SelectDemo } from "./SelectComponent";
 import { ToggleDemo } from "./Toggle";
 import { CardHeader, CardTitle } from "./ui/card";
 import { useNavigate } from "react-router-dom";
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
 import { Input } from "./ui/input";
+import { atomWithStorage } from "jotai/utils";
 
-export const search = atom();
+export const search = atomWithStorage("search", "");
 
-export default function Header({ theme }: { theme: string | "ka" | "en" }) {
+export default function Header({
+  theme,
+}: {
+  theme: string | "dark" | "light";
+}) {
   const { t } = useTranslation();
   const [Search, setSearch] = useAtom(search);
   const Navigate = useNavigate();
