@@ -39,7 +39,7 @@ export default function GamePage() {
       <Card
         className={`w-full h-full flex flex-col items-center justify-center rounded-none transition-colors ${theme === "dark" ? "bg-foreground" : "bg-accent"}`}
       >
-        <Card className="relative w-full h-full min-h-[400px] max-h-[900px] flex items-center justify-center -top-4 overflow-hidden rounded-none border-none">
+        <Card className="relative w-full h-full min-h-[400px] flex items-center justify-center -top-4 overflow-hidden rounded-none border-none">
           <CardTitle className="text-accent z-10 text-3xl font-bold px-4 text-center">
             {data?.name}
           </CardTitle>

@@ -21,13 +21,13 @@ const PAGE_SIZE = 6;
 
 function Home() {
   const { t } = useTranslation();
-  const [Search] = useAtom(search);
+  const [Search, setSearch] = useAtom(search);
   const [theme] = useAtom(Theme);
   const [page, setPage] = useState(1);
 
   const results = useQueries({
     queries: Array.from({ length: TOTAL_PAGES }, (_, i) => ({
-      queryKey: ["Games", i + 1],
+      queryKey: ["Games", +1],
       queryFn: () => GetGames(i + 1, PAGE_SIZE),
       staleTime: 1000 * 60 * 10,
       refetchOnWindowFocus: false,
@@ -35,7 +35,9 @@ function Home() {
   });
 
   const isSearching = !!Search && (Search as string).trim() !== "";
-
+  useEffect(() => {
+    setSearch("");
+  }, []);
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [page, isSearching]);
@@ -68,17 +70,23 @@ function Home() {
         </Card>
       ) : (
         <Card
-          className={`w-full grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 h-full rounded-none transition-colors  ${theme === "dark" ? "text-secondary bg-foreground" : "bg-accent"}`}
+          className={`w-full grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 min-h-dvh   rounded-none transition-colors  ${theme === "dark" ? "text-secondary bg-foreground" : "bg-accent"}`}
         >
-          {displayedGames.map((item: Game) => (
-            <CardImage
-              id={item.id}
-              image={item.background_image}
-              rating={item.rating}
-              name={item.name}
-              key={item.id}
-            />
-          ))}
+          {displayedGames.length > 0 ? (
+            displayedGames.map((item: Game) => (
+              <CardImage
+                id={item.id}
+                image={item.background_image}
+                rating={item.rating}
+                name={item.name}
+                key={item.id}
+              />
+            ))
+          ) : (
+            <div className="w-screen h-fit mt-10 flex items-center justify-center">
+              <h1 className="text-2xl">No results found.</h1>
+            </div>
+          )}
         </Card>
       )}
       {!isSearching && (
