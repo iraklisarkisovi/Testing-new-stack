@@ -21,12 +21,15 @@ export const GetGames = async (page: number, pageSize: number) => {
 };
 
 export const GetGame = async (GameId: string | undefined) => {
-  const res = await fetch(`https://api.rawg.io/api/games/${GameId}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${apikey}`,
+  const res = await fetch(
+    `https://api.rawg.io/api/games/${GameId}?key=${apikey}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${apikey}`,
+      },
     },
-  });
+  );
   if (!res.ok) {
     throw "api request failed";
   }
